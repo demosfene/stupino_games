@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Главная</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+<input id="spterm" type="text" name="spterm" placeholder="Что искать?"><br />
+<div id="spresult"></div>
+<div id="content"></div>
+
+
+<div th:each="game: ${gameList}"  class="game-container">
+
+	<!--	th:style="'background-image: url(' + ${game.image} + ');'"-->
+	<!--	НАДО БУДЕТ ВПИСЫВАТЬ В ЭЛЕМЕНТЕ НИЖЕ-->
+	<div class="game-logo" th:style="'background-image: url(' + ${game.image} + ');'"></div>
+	<div class="game-cover"></div>
+	<div class="game-info">
+		<div class="game-text">Игра: <span th:text="${game.title}"></span></div>
+		<div class="game-text">К-во участников: <span th:text="${game.NumberOfParticipants}"></span></div>
+	</div>
+	<div class="game-description-wrapper">
+		<div  class="game-description" th:text="${game.description}" ></div>
+<!--		th:onclick="'showModal(rent,\''+ ${game.id} + '\')'"-->
+		<div class="centeredWrapper" style="    padding-top: 10px;">
+			<a class="game-button" th:attr="gameId = ${game.id}" href="#" >Арендовать</a>
+		</div>
+	</div>
+</div>
+
+<div  class="game-container">
+<!--	НАДО БУДЕТ ВПИСЫВАТЬ В ЭЛЕМЕНТЕ НИЖЕ-->
+	<div class="game-logo"></div>
+	<div class="game-cover"></div>
+	<div class="game-info">
+		<div class="game-text">Игра: Монополия</div>
+		<div class="game-text">К-во участников: 5-8 чел.</div>
+	</div>
+	<div class="game-description-wrapper">
+		<div  class="game-description" >«Монополия» — экономическая и стратегическая настольная игра для двух и более человек. Получила большую популярность в XX веке во многих странах мира, включая СССР; в последнем была также известна под названиями «Менеджер», «Империя», «Бизнесмен». Цель игры — рационально используя стартовый капитал, добиться банкротства других игроков.
+		</div>
+	</div>
+</div>
+<div class="modalWrapper centeredWrapper" type="rent">
+	<div class="modal">
+		<div class="font30 centeredWrapper" style="margin-bottom: 2rem;">Аренда игры</div>
+<!--			<div class="game-container" style="margin: auto;">-->
+<!--&lt;!&ndash;			<div class="game-background"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;			<div class="game-cover">&ndash;&gt;-->
+<!--&lt;!&ndash;			</div>&ndash;&gt;-->
+<!--			<div class="game-info">-->
+<!--				<div class="font40 game-text">Игра: Монополия</div>-->
+<!--&lt;!&ndash;				<div class="game-text">К-во участников: 5-8 чел.</div>&ndash;&gt;-->
+<!--			</div>-->
+<!--&lt;!&ndash;			<div class="game-description-wrapper">&ndash;&gt;-->
+<!--&lt;!&ndash;				<div class="game-description" >&ndash;&gt;-->
+<!--&lt;!&ndash;				</div>&ndash;&gt;-->
+<!--&lt;!&ndash;			</div>&ndash;&gt;-->
+<!--		</div>-->
+		<div class="game-text font50" style="color: black"></div>
+		<div class="game-in-org-wrapper">
+			<div class="inline-wrapper">
+				<div class="count-game"></div>
+				<div class="font30 centeredWrapper">в организаторской</div>
+			</div>
+			<div class="action-button" onclick="showModalAll('transferToOrg')">Записать на себя</div>
+		</div>
+
+		<div class="game-on-hand-wrapper">
+			<div class="inline-wrapper">
+				<div class="count-game-onHand"></div>
+				<div class="font30 centeredWrapper">на руках</div>
+			</div>
+			<div class="student-avatar-wrapper">
+				<div class="student-avatar" style="background-image: url('/img/avatar.jpg')"></div>
+				<div class="student-avatar"></div>
+				<div class="student-avatar"></div>
+				<div class="student-avatar"></div>
+				<div class="student-avatar"></div>
+				<div class="student-avatar"></div>
+				<div class="student-avatar"></div>
+
+			</div>
+			<div class="action-button" onclick="showModalAll('action')">Записать на себя</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modalWrapper centeredWrapper" type="action">
+	<div class="modal">
+		<div class="student-avatar" style="background-image: url('/img/avatar.jpg'); margin: auto; height: 240px;width: 180px; margin-bottom: 3rem;"></div>
+		<div class="loader-wrapper centeredWrapper font30" style="margin: auto">
+			<div class="icon-wrapper" style="height: fit-content; position: relative !important; width: fit-content;">
+				<img src="/img/loader.gif" style="height: 80px;"/>
+			</div>
+		</div>
+		<div class="font30" style=" margin-top: 3rem; color: grey;">
+				Мы отправляем запрос.
+				Убедитесь что игрок
+				онлайн и зашел
+				во вкладку передать игру
+		</div>
+	</div>
+</div>
+
+
+<div class="modalWrapper centeredWrapper" type="search">
+	<div class="modal" style="width: 50%">
+		<!--<div class="student-avatar" style="background-image: url('/img/avatar.jpg'); margin: auto; height: 240px;width: 180px; margin-bottom: 3rem;"></div>-->
+		<div class="loader-wrapper centeredWrapper font30" style="margin: auto">
+			<div class="icon-wrapper" style="height: fit-content; position: relative !important; width: fit-content;">
+				<img src="/img/loader.gif" style="height: 80px;"/>
+			</div>
+		</div>
+		<div class="font30" style=" margin-top: 3rem; text-align: center">
+			Система ищет принимающего игрока
+		</div>
+	</div>
+</div>
+
+
+<div class="modalWrapper centeredWrapper" type="transferToStudent">
+	<div class="modal" style="width: 50%">
+		<div class="font40" style="text-align: center; margin-bottom: 2rem;">
+			Найденные игроки
+		</div>
+		<div class="student-avatar" style="background-image: url('/img/avatar.jpg'); margin: auto; height: 240px;width: 180px; margin-bottom: 3rem;"></div>
+		<div class="action-button font30" style="padding: 1rem;">Передать</div>
+	</div>
+</div>
+
+
+<div class="modalWrapper centeredWrapper" type="transferToOrg">
+	<div class="modal" style="width: 50%">
+		<!--<div class="student-avatar" style="background-image: url('/img/avatar.jpg'); margin: auto; height: 240px;width: 180px; margin-bottom: 3rem;"></div>-->
+		<div class="loader-wrapper centeredWrapper font30" style="margin: auto">
+			<div class="icon-wrapper" style="height: fit-content; position: relative !important; width: fit-content;">
+				<img src="/img/loader.gif" style="height: 80px;"/>
+
+			</div>
+		</div>
+		<div class="font30" style=" margin-top: 3rem; text-align: center">
+			Ожидаем подтверждения от организаторов
+		</div>
+	</div>
+</div>
+
+
+<script th:src="@{'/js/jquery-3.0.0.min.js'}"></script>
+<script th:src="@{'/js/script.js'}" ></script>
+<script th:src="@{'/js/search.js'}"></script>
+<script th:inline="javascript"></script>
+
+	<script>
+
+
+		$('.game-button').click(function () {
+			var gameId = $(this).attr('gameId');
+			showModal('rent',gameId);
+		});
+
+		function showModal(type,id) {
+			var xhr = new XMLHttpRequest();
+			var xhrPersonsWithGame = new XMLHttpRequest()
+			var url = "/queryForGetObject?gameId=" + id;
+			var urlPersonsWithGame = "/queryForGetPersonsWithGame?rentedGameId" + id;
+			xhr.open("POST", url, true);
+			xhrPersonsWithGame.open("POST", urlPersonsWithGame, true);
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhrPersonsWithGame.setRequestHeader("Content-Type", "application/json");
+
+			xhr.onreadystatechange = function () {
+				xhrPersonsWithGame.onreadystatechange = function () {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						var games = JSON.parse(xhr.response);
+						var persons = new Array;
+						persons = JSON.parse(xhrPersonsWithGame.response);
+						//$('.modalWrapper').find('.game-description').text(objects.description);
+						$('.modalWrapper').find('.game-text').text(games.title);
+						$('.modalWrapper').find('.count-game').text(games.amount);
+						$('.modalWrapper').find('.count-game-onHand').text(games.used_count);
+
+						// $('.game-background').css({"background-image":'url(' + objects.image + ')'});
+						alert(persons.length);
+						$('.modalWrapper').each(function () {
+							if ($(this).attr('type') == type)
+								$(this).css('display', 'flex');
+						})
+					}
+				}
+			}
+			xhrPersonsWithGame.send();
+			xhr.send();
+		}
+		function showModalAll(type) {
+
+			$('.modalWrapper').each(function () {
+				if ($(this).attr('type') == type)
+					$(this).css('display', 'flex');
+			})
+
+		}
+
+		// <div class="game-info">
+		// 		<div class="game-text">Игра: <span th:text="${game.title}"></span></div>
+		// <div class="game-text">К-во участников: <span th:text="${game.NumberOfParticipants}"></span></div>
+		// </div>
+		// <div class="game-description-wrapper">
+		// 		<div  class="game-description" th:text="${game.description}" ></div>
+
+		function hideModal() {
+			$('.modalWrapper').hide();
+		}
+
+		$('.modalWrapper').click(function (event) {
+			if (event.target.className.includes('modalWrapper')) {
+				hideModal();
+			}
+		});
+
+	</script>
+
+
+
+</body>
+</html>

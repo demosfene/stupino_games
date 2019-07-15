@@ -1,0 +1,216 @@
+.game-container{
+    width: 100%;
+    /* height: 200px; */
+    max-width: 500px;
+    /* height: 100px; */
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.8s;
+    margin-bottom: 1rem;
+}
+
+.game-container.active{
+    height: auto;
+    transition: 0.8s;
+}
+
+/*ЗАКОМЕНТИЛ ТУТ, ПОТОМУ ЧТО ТЕБЕ НАДО КАК РАЗ ЭТО BACKGROUND ВЫТАСКИВАТЬ THYMELEAFОМ*/
+
+.game-logo{
+    height: 250px;
+    /*background-image: url(/img/monopoly.jpg);*/
+    /*border-radius: 10px;*/
+    background-position: center 0%;
+    background-size: cover;
+}
+
+.game-cover{
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* bottom: 0; */
+    left: 0;
+    background: linear-gradient(0deg, #00000096, #5f5f5f1f,#00000045);
+    /*border-radius: 10px;*/
+    height: 250px;
+}
+
+.game-info{
+    height: 60px;
+    width: -webkit-fill-available;
+    position: absolute;
+    top: 190px;
+    border-radius: 0px 0px 10px 10px;
+    padding: 5px 10px 5px 10px;
+    background: linear-gradient(0deg, #000000ab, transparent);
+}
+
+.game-text{
+    width: 50%;
+    /*padding: 5px;*/
+    color: white;
+    font-weight: 600;
+    font-family: cursive;
+}
+
+.game-description-wrapper{
+    /*height: fit-content;*/
+    height: auto;
+    font-weight: 600;
+    font-family: cursive;
+    font-size: 15px;
+    padding: 10px;
+    background-color: #000000;
+}
+
+
+
+.game-description{
+    padding: 5px;
+    padding-left: 10px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+
+.game-button{
+    padding: 2px;
+    padding-left: 5px;
+    panding-right: 5px;
+    background-color: snow;
+    border-radius: 10px;
+    /*margin: 39%;*/
+}
+
+.centeredWrapper{
+    display: FLEX;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-background{
+    height: 250px;
+    background-image: none;
+    /*border-radius: 10px;*/
+    background-position: center 0%;
+    background-size: cover;
+}
+
+.modalWrapper{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #00000042;
+    display: none;
+}
+
+.modal{
+    width: 60%;
+    height: fit-content;
+    background-color: white;
+    border: 1px solid #919191;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+
+.font30{
+    font-size: 30px;
+    /*height: 30px;*/
+    line-height: 30px;
+    font-weight: 600;
+}
+
+.inline-wrapper{
+    display: -webkit-box;
+}
+
+.game-in-org-wrapper{
+    width: -webkit-fill-available;
+    height: fit-content;
+    border: 1px solid;
+    border-radius: 1rem;
+    margin-top: 4rem;
+    padding: 2rem;
+}
+.count-game-onHand{
+    width: 50px;
+    height: 30px;
+    border: 1px solid;
+    border-radius: 1rem;
+    margin-right: 2rem;
+}
+
+.count-game{
+    width: 50px;
+    height: 30px;
+    border: 1px solid;
+    border-radius: 1rem;
+    margin-right: 2rem;
+}
+
+
+.game-on-hand-wrapper{
+    width: -webkit-fill-available;
+    height: fit-content;
+    border: 1px solid;
+    border-radius: 1rem;
+    margin-top: 4rem;
+    padding: 2rem;
+}
+
+.action-button{
+    width: fit-content;
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 1rem;
+    margin: auto;
+    font-size: 30px;
+    margin-top: 2rem;
+}
+
+.student-avatar-wrapper{
+    height: fit-content;
+    width: -webkit-fill-available;
+    padding: 10px 0 10px 0;
+    display: -webkit-box;
+    margin-top: 1rem;
+    overflow: auto;
+}
+
+.student-avatar{
+    height: 150px;
+    width: 120px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin-right: 10px;
+    background-position: center;
+    background-size: cover;
+}
+
+.font16{
+    font-size: 16px;
+    /*height: 16px;*/
+    line-height: 16px;
+    font-weight: 600;
+}
+
+
+.font50{
+    font-size: 50px;
+    /*height: 16px;*/
+    line-height: 50px;
+    font-weight: 600;
+}
+
+.font40{
+    font-size: 40px;
+    /*height: 16px;*/
+    line-height: 40px;
+    font-weight: 600;
+}
