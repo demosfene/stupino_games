@@ -59,6 +59,20 @@
 <!--&lt;!&ndash;				</div>&ndash;&gt;-->
 <!--&lt;!&ndash;			</div>&ndash;&gt;-->
 <!--		</div>-->
+		<div  class="game-container">
+			<!--	НАДО БУДЕТ ВПИСЫВАТЬ В ЭЛЕМЕНТЕ НИЖЕ-->
+			<div class="game-background"></div>
+			<div class="game-cover"></div>
+			<div class="game-info">
+				<div class="game-text">Игра: Монополия</div>
+				<div class="game-text">К-во участников: 5-8 чел.</div>
+			</div>
+			<div class="game-description-wrapper">
+				<div  class="game-description" >«Монополия» — экономическая и стратегическая настольная игра для двух и более человек. Получила большую популярность в XX веке во многих странах мира, включая СССР; в последнем была также известна под названиями «Менеджер», «Империя», «Бизнесмен». Цель игры — рационально используя стартовый капитал, добиться банкротства других игроков.
+				</div>
+			</div>
+		</div>
+
 		<div class="game-text font50" style="color: black"></div>
 		<div class="game-in-org-wrapper">
 			<div class="inline-wrapper">
@@ -74,13 +88,14 @@
 				<div class="font30 centeredWrapper">на руках</div>
 			</div>
 			<div class="student-avatar-wrapper">
-				<div class="student-avatar" style="background-image: url('/img/avatar.jpg')"></div>
-				<div class="student-avatar"></div>
-				<div class="student-avatar"></div>
-				<div class="student-avatar"></div>
-				<div class="student-avatar"></div>
-				<div class="student-avatar"></div>
-				<div class="student-avatar"></div>
+				<div class="student-avatar1" id="0" >
+				<!--style="background-image: url('/img/avatar.jpg')"--></div>
+				<div class="student-avatar2" id="1"></div>
+				<div class="student-avatar" id="2"></div>
+				<div class="student-avatar" id="3"></div>
+				<div class="student-avatar" id="4"></div>
+				<div class="student-avatar" id="5"></div>
+				<div class="student-avatar" id="6"></div>
 
 			</div>
 			<div class="action-button" onclick="showModalAll('action')">Записать на себя</div>
@@ -164,36 +179,57 @@
 
 		function showModal(type,id) {
 			var xhr = new XMLHttpRequest();
-			var xhrPersonsWithGame = new XMLHttpRequest()
+			//var xhrPersonsWithGame = new XMLHttpRequest()
 			var url = "/queryForGetObject?gameId=" + id;
-			var urlPersonsWithGame = "/queryForGetPersonsWithGame?rentedGameId" + id;
+			//var urlPersonsWithGame = "/queryForGetPersonsWithGame?rentedGameId" + id;
 			xhr.open("POST", url, true);
-			xhrPersonsWithGame.open("POST", urlPersonsWithGame, true);
+			//xhrPersonsWithGame.open("POST", urlPersonsWithGame, true);
 			xhr.setRequestHeader("Content-Type", "application/json");
-			xhrPersonsWithGame.setRequestHeader("Content-Type", "application/json");
+			//xhrPersonsWithGame.setRequestHeader("Content-Type", "application/json");
 
 			xhr.onreadystatechange = function () {
-				xhrPersonsWithGame.onreadystatechange = function () {
+				//xhrPersonsWithGame.onreadystatechange = function () {
 					if (xhr.readyState == 4 && xhr.status == 200) {
 						var games = JSON.parse(xhr.response);
-						var persons = new Array;
-						persons = JSON.parse(xhrPersonsWithGame.response);
-						//$('.modalWrapper').find('.game-description').text(objects.description);
+						//var persons = new Array;
+						//persons = JSON.parse(xhrPersonsWithGame.response);
+						$('.modalWrapper').find('.game-description').text(games.description);
 						$('.modalWrapper').find('.game-text').text(games.title);
 						$('.modalWrapper').find('.count-game').text(games.amount);
 						$('.modalWrapper').find('.count-game-onHand').text(games.used_count);
 
-						// $('.game-background').css({"background-image":'url(' + objects.image + ')'});
-						alert(persons.length);
-						$('.modalWrapper').each(function () {
-							if ($(this).attr('type') == type)
-								$(this).css('display', 'flex');
-						})
+						$('.game-background').css('background-image','url(' + games.image + ')');
+						//alert(persons.length);
+						// $('.modalWrapper').each(function () {
+						// 	if ($(this).attr('type') == type)
+						// 		$(this).css('display', 'flex');
+						// })
 					}
 				}
-			}
-			xhrPersonsWithGame.send();
+			//}
+			//xhrPersonsWithGame.send();
 			xhr.send();
+
+			var xhr1 = new XMLHttpRequest();
+			var url1 = "/queryForGetPersonsWithGame?rentedGameId=" + id;
+			xhr1.open("POST", url1, true);
+			xhr1.setRequestHeader("Content-Type", "application/json");
+			xhr1.onreadystatechange = function () {
+				if (xhr1.readyState == 4 && xhr1.status == 200) {
+					var students = new Array();
+					students = JSON.parse(xhr1.response);
+
+					for(var i = 0; i < students.length; i++){
+						$('.modalWrapper').find('[id='+i+']').css('background-image','url(' + students[i].studentAvatarUrl + ')');
+					}
+					$('.modalWrapper').each(function () {
+						if ($(this).attr('type') == type)
+							$(this).css('display', 'flex');
+					})
+
+				}
+			}
+			xhr1.send();
 		}
 		function showModalAll(type) {
 

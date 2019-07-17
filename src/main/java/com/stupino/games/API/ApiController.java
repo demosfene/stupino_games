@@ -4,12 +4,11 @@ import com.stupino.games.db.DAO;
 import com.stupino.games.db.entities.Game;
 import com.stupino.games.db.entities.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.PessimisticLockingFailureException;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,14 +27,14 @@ public class ApiController {
     }
 
     @RequestMapping("/queryForGetPersonsWithGame")
-    public Person queryForGetPersonsWithGame(@RequestParam Integer rentedGameId){
+    public ArrayList<Person> queryForGetPersonsWithGame(@RequestParam Integer rentedGameId){
         List<Person> personsList = dao.queryPerson();
-        List<Person> personsListWithGame = null;
+        ArrayList<Person> personsListWithGame = new ArrayList<Person>();
         for(Person p:personsList){
             if(rentedGameId.equals(p.getRentedGameId()))
                 personsListWithGame.add(p);
         }
-        return (Person) personsListWithGame;
+        return personsListWithGame;
     }
 
 }

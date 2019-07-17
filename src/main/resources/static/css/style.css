@@ -191,6 +191,28 @@
     margin-right: 10px;
     background-position: center;
     background-size: cover;
+    background-image: none;
+}
+
+.student-avatar1{
+    height: 150px;
+    width: 120px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin-right: 10px;
+    background-position: center;
+    background-size: cover;
+    background-image: none;
+}
+.student-avatar2{
+    height: 150px;
+    width: 120px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin-right: 10px;
+    background-position: center;
+    background-size: cover;
+    background-image: none;
 }
 
 .font16{
