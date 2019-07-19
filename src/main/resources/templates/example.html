@@ -64,8 +64,7 @@
 			<div class="game-background"></div>
 			<div class="game-cover"></div>
 			<div class="game-info">
-				<div class="game-text">Игра: Монополия</div>
-				<div class="game-text">К-во участников: 5-8 чел.</div>
+				<div class="game-text"></div>
 			</div>
 			<div class="game-description-wrapper">
 				<div  class="game-description" >«Монополия» — экономическая и стратегическая настольная игра для двух и более человек. Получила большую популярность в XX веке во многих странах мира, включая СССР; в последнем была также известна под названиями «Менеджер», «Империя», «Бизнесмен». Цель игры — рационально используя стартовый капитал, добиться банкротства других игроков.
@@ -73,10 +72,9 @@
 			</div>
 		</div>
 
-		<div class="game-text font50" style="color: black"></div>
 		<div class="game-in-org-wrapper">
 			<div class="inline-wrapper">
-				<div class="count-game"></div>
+				<div class="count-game font16"></div>
 				<div class="font30 centeredWrapper">в организаторской</div>
 			</div>
 			<div class="action-button" onclick="showModalAll('transferToOrg')">Записать на себя</div>
@@ -88,9 +86,8 @@
 				<div class="font30 centeredWrapper">на руках</div>
 			</div>
 			<div class="student-avatar-wrapper">
-				<div class="student-avatar1" id="0" >
-				<!--style="background-image: url('/img/avatar.jpg')"--></div>
-				<div class="student-avatar2" id="1"></div>
+				<div class="student-avatar" id="0"> Алексей Фильчаков</div>
+				<div class="student-avatar" id="1"></div>
 				<div class="student-avatar" id="2"></div>
 				<div class="student-avatar" id="3"></div>
 				<div class="student-avatar" id="4"></div>
@@ -178,6 +175,9 @@
 		});
 
 		function showModal(type,id) {
+			for (var i = 0; i < 7; i++) {
+				$('.modalWrapper').find('[id=' + i + ']').css('background-image','');
+			}
 			var xhr = new XMLHttpRequest();
 			//var xhrPersonsWithGame = new XMLHttpRequest()
 			var url = "/queryForGetObject?gameId=" + id;
@@ -194,7 +194,7 @@
 						//var persons = new Array;
 						//persons = JSON.parse(xhrPersonsWithGame.response);
 						$('.modalWrapper').find('.game-description').text(games.description);
-						$('.modalWrapper').find('.game-text').text(games.title);
+						$('.modalWrapper').find('.game-text').text('Игра:' + games.title);
 						$('.modalWrapper').find('.count-game').text(games.amount);
 						$('.modalWrapper').find('.count-game-onHand').text(games.used_count);
 
@@ -217,11 +217,16 @@
 			xhr1.onreadystatechange = function () {
 				if (xhr1.readyState == 4 && xhr1.status == 200) {
 					var students = new Array();
+
 					students = JSON.parse(xhr1.response);
 
-					for(var i = 0; i < students.length; i++){
-						$('.modalWrapper').find('[id='+i+']').css('background-image','url(' + students[i].studentAvatarUrl + ')');
-					}
+						for (var i = 0; i < students.length; i++) {
+
+							$('.modalWrapper').find('[id=' + i + ']').css('background-image', 'url(' + students[i].studentAvatarUrl + ')');
+
+						}
+
+
 					$('.modalWrapper').each(function () {
 						if ($(this).attr('type') == type)
 							$(this).css('display', 'flex');
@@ -231,6 +236,11 @@
 			}
 			xhr1.send();
 		}
+
+		function exchange(id) {
+
+		}
+
 		function showModalAll(type) {
 
 			$('.modalWrapper').each(function () {
