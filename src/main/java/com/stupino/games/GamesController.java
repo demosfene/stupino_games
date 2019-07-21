@@ -36,29 +36,8 @@ public class GamesController {
         return "example";
     }
 
-    @PostMapping(value="/test")
-    public String search(@Valid String param){
-        param="5";
-        return "exemple";
-    }
 
 
-//    @GetMapping("/mygame")
-//    public String myGame(ModelMap modelMap){
-//        List<Person> personList = dao.queryPerson();
-//        if (personList.rentedGameId
-//
-//        return "myGame";
-//    }
-//
-
-    /*@PostMapping
-    public String filter(@RequestParam String title, ModelMap modelMap){
-        List<Game> gameList = dao.getTitle();
-        if((gameList.equals()) )
-        filter().equals()
-    }
-*/
 }
 
 

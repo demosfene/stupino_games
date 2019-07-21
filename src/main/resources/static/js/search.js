@@ -1,18 +1,3 @@
-// $('.send-search-data').click(function(e) {
-//     var strSearch = $('#my-search-row').val();
-//
-//     $.redirect('/search',
-//         {
-//             strSearch: strSearch
-//         });
-// });
-// var strSearch = $('#my-search-row').val();
-// if (strSearch == $(document).div.name){
-//
-// }
-function search() {
-    var strSearch = $('#my-search-row').val();
-}
 jQuery(document).ready(function(){
     var minlen = 3; // минимальная длина слова
     var paddingtop = 30; // отступ сверху при прокрутке
